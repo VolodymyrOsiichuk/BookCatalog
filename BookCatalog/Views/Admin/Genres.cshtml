@@ -1,0 +1,40 @@
+@model List<BookCatalog.ViewModels.Genres.GenreViewModel>
+
+@{
+    ViewData["Title"] = "Manage Genres";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Manage Genres</h1>
+        <a asp-action="CreateGenre" class="btn btn-success">Create Genre</a>
+    </div>
+
+    <table class="table table-bordered table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th style="width:220px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var genre in Model)
+            {
+                <tr>
+                    <td>@genre.Name</td>
+                    <td>@genre.Description</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a asp-action="EditGenre" asp-route-id="@genre.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <form asp-action="DeleteGenre" method="post">
+                                <input type="hidden" name="id" value="@genre.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,31 @@
+@model List<BookCatalog.ViewModels.Authors.AuthorViewModel>
+
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Authors</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No authors found.</div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var author in Model)
+            {
+                <div class="col-md-6 mb-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@author.FullName</h5>
+                            <p class="card-text"><strong>Email:</strong> @author.Email</p>
+                            <p class="card-text">@author.Biography</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

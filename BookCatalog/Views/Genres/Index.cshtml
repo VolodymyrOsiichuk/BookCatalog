@@ -1,0 +1,30 @@
+@model List<BookCatalog.ViewModels.Genres.GenreViewModel>
+
+@{
+    ViewData["Title"] = "Genres";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Genres</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No genres found.</div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var genre in Model)
+            {
+                <div class="col-md-6 mb-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@genre.Name</h5>
+                            <p class="card-text">@genre.Description</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

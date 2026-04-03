@@ -1,0 +1,62 @@
+@model BookCatalog.ViewModels.Books.CreateBookViewModel
+
+@{
+    ViewData["Title"] = "Create Book";
+}
+
+<div class="container mt-4" style="max-width: 700px;">
+    <h1 class="mb-4">Create Book</h1>
+
+    <form asp-action="CreateBook" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PublishedYear" class="form-label"></label>
+            <input asp-for="PublishedYear" class="form-control" />
+            <span asp-validation-for="PublishedYear" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="GenreId" class="form-label"></label>
+            <select asp-for="GenreId" asp-items="Model.Genres" class="form-select">
+                <option value="">Select genre</option>
+            </select>
+            <span asp-validation-for="GenreId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AuthorId" class="form-label"></label>
+            <select asp-for="AuthorId" asp-items="Model.Authors" class="form-select">
+                <option value="">Select author</option>
+            </select>
+            <span asp-validation-for="AuthorId" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success">Create</button>
+            <a asp-action="Books" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

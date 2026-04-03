@@ -1,0 +1,42 @@
+@model List<BookCatalog.ViewModels.Authors.AuthorViewModel>
+
+@{
+    ViewData["Title"] = "Manage Authors";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Manage Authors</h1>
+        <a asp-action="CreateAuthor" class="btn btn-success">Create Author</a>
+    </div>
+
+    <table class="table table-bordered table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Biography</th>
+                <th style="width:220px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.FullName</td>
+                    <td>@author.Email</td>
+                    <td>@author.Biography</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a asp-action="EditAuthor" asp-route-id="@author.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <form asp-action="DeleteAuthor" method="post">
+                                <input type="hidden" name="id" value="@author.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
